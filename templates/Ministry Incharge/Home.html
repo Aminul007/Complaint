@@ -1,0 +1,32 @@
+{% extends 'Ministry Incharge/MinistryInchargeNavbar.html' %}
+
+{% load static %}
+{% block content %}
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3 col-sm-6">
+                <div class="card-box bg-blue">
+                    <div class="inner">
+                        <center><h3> {{ student }} </h3></center>
+                        <center><h4> Total Complaint  </h4></center>
+                    </div>
+                    <br>
+                    <br>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-sm-6">
+                <div class="card-box bg-green">
+                    <div class="inner">
+                        <center><h3> {{ government_employee }} </h3></center>
+                        <center><h4> Total Ministry Incharge </h4></center>
+                    </div>
+                    <br>
+                    <br>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock content %}

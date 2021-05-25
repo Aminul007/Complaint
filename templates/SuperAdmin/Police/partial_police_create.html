@@ -1,0 +1,20 @@
+{% extends 'SuperAdmin/SuperAdminNavbar.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block content %}
+
+<form method="post" action="{% url 'police_create' %}">
+  {% csrf_token %}
+  <div class="modal-header">
+     <h4 class="modal-title">Create a new police</h4>
+
+  </div>
+  <div class="modal-body">
+    {% include 'SuperAdmin/Police/partial_police_form.html' %}
+  </div>
+  <div class="modal-footer">
+    <button type="submit" class="btn btn-primary">Create police station</button>
+  </div>
+</form>
+{% endblock content %}

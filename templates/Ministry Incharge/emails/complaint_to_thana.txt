@@ -1,0 +1,7 @@
+{% load i18n %}
+   {{ complaint_name }}
+   {{ ministry_name }}
+   {{ email_or_start_date }}
+   {{ location }}
+   {{ note }}
+   {{ image }}

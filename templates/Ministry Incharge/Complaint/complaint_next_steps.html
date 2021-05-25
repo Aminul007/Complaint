@@ -1,0 +1,17 @@
+{% extends 'Ministry Incharge/MinistryInchargeNavbar.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block content %}
+
+<form method="post" action="{% url 'ministry_incharge_next_update_complaint_form' complaint.id %}">
+  {% csrf_token %}
+  <div class="modal-header">
+     <h4 class="modal-title"> Ministry Incharge Sent mail to Thana</h4>
+  </div>
+  <div class="modal-body">
+   {{ form|crispy }}
+  </div>
+    <button type="submit" class="btn btn-primary">Send</button>
+</form>
+{% endblock content %}

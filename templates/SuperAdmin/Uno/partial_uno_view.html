@@ -1,0 +1,43 @@
+{% extends 'SuperAdmin/SuperAdminNavbar.html' %}
+{% load widget_tweaks %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<form method="post" action="{% url 'uno_view' uno.id %}" class="js-employee-view-form">
+  {% csrf_token %}
+  <div class="modal-header">
+    <h4 class="modal-title"> uno </h4>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+
+  </div>
+  <div class="modal-body">
+      <div class="x_content">
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="card-box table-responsive">
+                <div class="media">
+                  <div class="media-body">
+                    <img class="rounded-circle account-img" src="{{ uno.image.url }}">
+                    <h2 class="account-heading">UserName : {{ uno.username }}</h2>
+                    <p class="text-secondary">Email : {{ uno.email }}</p>
+                    <p class="text-secondary">First Name : {{ uno.first_name }}</p>
+                    <p class="text-secondary">Last Name : {{ uno.last_name }}</p>
+                    <p class="text-secondary">Full Name : {{ uno.first_name}} {{ uno.last_name}}</p>
+                    <p class="text-secondary">Phone Number : {{ uno.phone_number }}</p>
+                    <p class="text-secondary">Address : {{ uno.Address }}</p>
+                    <p class="text-secondary">District  : {{ uno.district }}</p>
+                    <p class="text-secondary">Police Station : {{ uno.police_station }}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+      </div>
+  </div>
+
+</form>
+
+{% endblock content %}

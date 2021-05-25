@@ -1,0 +1,65 @@
+{% extends 'SuperAdmin/SuperAdminNavbar.html' %}
+
+{% load static %}
+
+{% block content %}
+<br>
+
+  <p>
+
+      <a href="{% url 'ministry_create' %}" type="button" style="float:right;" class="btn btn-primary">
+          <span class="glyphicon glyphicon-plus"></span>
+      New Ministry
+      </a>
+
+  </p>
+<div class="col-md-12 col-sm-12 ">
+    <div class="x_panel">
+        <div class="x_title">
+            <h2>Button Example <small>Users</small></h2>
+            <div class="clearfix"></div>
+        </div>
+        <div class="x_content">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="card-box table-responsive">
+                        <table class="table" id="datatable-buttons"  style="width:100%">
+                            <thead>
+                                <tr>
+                                    <th>S. No.</th>
+                                    <th>MinistryName</th>
+                                    <th>MinisterName</th>
+                                    <th>Email</th>
+                                    <th></th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                    {% for ministry in ministrys %}
+                                      <tr>
+                                        <td>{{ forloop.counter }}</td>
+                                        <td>{{ ministry.ministry_name}}</td>
+                                        <td>{{ ministry.minister_name }}</td>
+                                        <td>{{ ministry.email }}</td>
+                                        <td style="width: 100px">
+                                            <a href="{% url 'ministry_update' ministry.pk %}" class="btn btn-success"> Update </a>
+                                        </td>
+                                        <td style="width: 100px">
+                                            <a href="{% url 'ministry_delete' ministry.pk %}" class="btn btn-danger"> Delete </a>
+                                        </td>
+                                      </tr>
+                                    {% empty %}
+                                      <tr>
+                                        <td colspan="8" class="text-center bg-warning">No ministry</td>
+                                      </tr>
+                                    {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

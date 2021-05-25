@@ -1,0 +1,27 @@
+{% for uno in uno %}
+      <tr>
+          <td>{{ forloop.counter }}</td>
+          <td>{{ uno.username}}</td>
+          <td>{{ uno.district }}</td>
+          <td>{{ uno.last_name }}</td>
+          <td>{{ uno.email }}</td>
+          <td>
+              {{ uno.ministry_name}}
+          </td>
+          <td>
+              {{ uno.is_uno }}
+          </td>
+          <td style="width: 200px">
+                <a href="{% url 'uno_update' uno.id %}" type="button" class="btn btn-success btn-sm">
+                    Update
+                </a>
+              <a href="{% url 'uno_view' uno.id %}" class="btn btn-primary btn-sm">View</a>
+              <a href="{% url 'uno_delete' uno.id %}" class="btn btn-danger btn-sm">Delete</a>
+          </td>
+      </tr>
+
+        {% empty %}
+        <tr>
+            <td colspan="8" class="text-center bg-warning">No Uno</td>
+        </tr>
+{% endfor %}

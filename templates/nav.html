@@ -1,0 +1,25 @@
+{% load static %}
+
+    <ul>
+          <li class="active"><a href="{% url 'index' %}">Home</a></li>
+          <li class="drop-down"><a href="">Complaint</a>
+                <ul>
+                    {% for ministry in ministry %}
+                      <li><a href="{% url 'create_complaint' ministry.id %}">{{ ministry.ministry_name }}</a></li>
+                    {% endfor %}
+                </ul>
+          </li>
+          <li><a href="{% url 'about' %}">About</a></li>
+          <li><a href="{% url 'service' %}">Services</a></li>
+
+          {% if request.user.is_authenticated and request.user.is_superuser %}
+            <li><a href="{% url 'SuperAdminHome'%}">My Dashboard</a></li>
+            <li><a href="{% url 'log_out'%}">Log out</a></li>
+          {% elif request.user.is_authenticated and request.user.is_ministry_incharge %}
+            <li><a href="{% url 'ministry_incharge_home'%}">My Dashboard</a></li>
+            <li><a href="{% url 'log_out'%}">Log out</a></li>
+          {% else %}
+            <li><a href="{% url 'sign_up' %}">Create Account</a></li>
+            <li><a href="{% url 'log_in' %}">Login</a></li>
+          {% endif %}
+    </ul>

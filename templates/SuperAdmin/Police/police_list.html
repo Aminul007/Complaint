@@ -1,0 +1,65 @@
+{% extends 'SuperAdmin/SuperAdminNavbar.html' %}
+
+{% load static %}
+
+{% block content %}
+<br>
+
+  <p>
+
+      <a href="{% url 'police_create' %}" type="button" style="float:right;" class="btn btn-primary">
+          <span class="glyphicon glyphicon-plus"></span>
+      New police station
+      </a>
+
+  </p>
+<div class="col-md-12 col-sm-12 ">
+    <div class="x_panel">
+        <div class="x_title">
+            <h2>Button Example <small>Users</small></h2>
+            <div class="clearfix"></div>
+        </div>
+        <div class="x_content">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="card-box table-responsive">
+                        <table class="table" id="datatable-buttons"  style="width:100%">
+                            <thead>
+                                <tr>
+                                    <th>S. No.</th>
+                                    <th>District Name</th>
+                                    <th>Police Station Name</th>
+                                    <th>Email</th>
+                                    <th></th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                    {% for police in police %}
+                                      <tr>
+                                        <td>{{ forloop.counter }}</td>
+                                        <td>{{ police.district }}</td>
+                                        <td>{{ police.police_station }}</td>
+                                        <td>{{ police.email }}</td>
+                                        <td style="width: 100px">
+                                            <a href="{% url 'police_update' police.pk %}" class="btn btn-success"> Update </a>
+                                        </td>
+                                        <td style="width: 100px">
+                                            <a href="{% url 'police_delete' police.pk %}" class="btn btn-danger"> Delete </a>
+                                        </td>
+                                      </tr>
+                                    {% empty %}
+                                      <tr>
+                                        <td colspan="8" class="text-center bg-warning">No police station</td>
+                                      </tr>
+                                    {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

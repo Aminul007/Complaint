@@ -1,0 +1,73 @@
+{% extends 'Ministry Incharge/MinistryInchargeNavbar.html' %}
+
+{% load static %}
+
+{% block content %}
+<br>
+
+<div class="col-md-12 col-sm-12 ">
+    <div class="x_panel">
+        <div class="x_title">
+            <h2>All Complaint List <small></small></h2>
+            <div class="clearfix"></div>
+        </div>
+        <div class="x_content">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="card-box table-responsive">
+                        <table class="table" id="datatable-buttons"  style="width:100%">
+                            <thead>
+                                <tr>
+                                    <th>S. NO.</th>
+                                    <th>C. User Name</th>
+                                    <th>C. Ministry Name</th>
+                                    <th>C. Location</th>
+                                    <th>C. Image</th>
+                                    <th>C. Note</th>
+                                    <th>Status Complaint</th>
+                                    <th>Change Status Complaint</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                    {% for complaint in complaint %}
+                                      <tr>
+                                        <td>{{ forloop.counter}}</td>
+                                        <td>{{ complaint.username }}</td>
+                                        <td>{{ complaint.ministry_name}}</td>
+                                        <td>{{ complaint.location }}</td>
+                                        <td>
+                                            <img src="{{ complaint.image.url }}" height="50" width="50">
+                                        </td>
+                                        <td>{{ complaint.note }}</td>
+                                        <td>{{ complaint.is_approved_status }}</td>
+                                        <td>
+                                            {% if complaint.is_approved_status %}
+                                              Already Approved
+                                            {% else %}
+                                            <a href="{% url 'ministry_incharge_approved_complaint' complaint.id %}" class="btn btn-primary"> Approved Complaint</a>
+                                            {% endif %}
+                                        </td>
+                                        <td>
+                                            {% if complaint.is_next_update_status %}
+                                              Already Done
+                                            {% else %}
+                                            <a href="{% url 'ministry_incharge_next_update_complaint_form' complaint.id %}" class="btn btn-primary">Update Complaint</a>
+                                            {% endif %}
+                                        </td>
+                                      </tr>
+                                    {% empty %}
+                                      <tr>
+                                        <td colspan="8" class="text-center bg-warning">No Complaint</td>
+                                      </tr>
+                                    {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
